@@ -77,7 +77,9 @@ export default function HandlePayment({
       //send email here
       handleWeb3PostPayment();
     } catch (error) {
-      toast.success("Payment failed ❌");
+      setProcessing(false);
+      setPaymentMade(false);
+      toast.error("Payment failed ❌");
       console.error("Transaction failed:", error);
     }
   };
