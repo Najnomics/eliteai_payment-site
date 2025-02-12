@@ -7,11 +7,6 @@ import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import externshipEmailTemplate from "./utils/externship_email_template";
 import Link from "next/link";
-import { clusterApiUrl } from "@solana/web3.js";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
-
-const network = WalletAdapterNetwork.Devnet;
 
 const PaystackButton = dynamic(
   () => import("react-paystack").then((mod) => mod.PaystackButton),

@@ -1,17 +1,11 @@
 import { ChevronLeft, Lock } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import AdminDashboard from "./AdminDashboard";
-import { toast } from "react-toastify";
-import crypto from "crypto";
 import Link from "next/link";
 
 export default function Navbar() {
   const [referralCode, setReferralCode] = useState("");
-  const [adminCode, setAdminCode] = useState("");
   const [showDashboardPopup, setShowDashboardPopup] = useState(false);
-  const [showAdminDashboardPopup, setShowAdminDashboardPopup] = useState(false);
-  const [showAdminDashboard, setShowAdminDashboard] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 

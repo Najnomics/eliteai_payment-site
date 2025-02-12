@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { google, sheets_v4 } from "googleapis";
 import { NextRequest, NextResponse } from "next/server";
 
