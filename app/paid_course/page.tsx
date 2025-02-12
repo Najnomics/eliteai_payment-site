@@ -1,14 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Navbar from "../Navbar";
 import { BackgroundPattern } from "../BackgroundPattern";
 import BackgroundPatternMobile from "../BackgroundPatternMobile";
-import PaidLandingForm from "./PaidLandingForm";
+import PaidLandingForm, { PaidLandingFormRef } from "./PaidLandingForm";
+import "@solana/wallet-adapter-react-ui/styles.css";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { clusterApiUrl } from "@solana/web3.js";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
+import HandlePayment from "../web3_pay/handlePayment";
+
+const network = WalletAdapterNetwork.Devnet;
 
 export default function Home() {
+  const endpoint = clusterApiUrl(network);
+  const wallets = [new PhantomWalletAdapter()];
+  const [paywithSolana, setPayWithSolana] = useState(false);
+  const [price, setPrice] = useState(30);
   const [showForm, setShowForm] = useState(false);
+  const postPaymentRef = useRef<PaidLandingFormRef>(null);
+
+  const handleWeb3PostPayment = async () => {
+    console.log("in here 1");
+    if (postPaymentRef.current) {
+      console.log("in here 2");
+      await postPaymentRef.current.web3PostPayment();
+    }
+  };
+
   return (
     <main className="h-[100vh] overflow-hidden text-white w-[100vw] bg-black relative">
       <Navbar />
@@ -26,7 +52,8 @@ export default function Home() {
               <p className="text-xs md:text-sm pt-4 w-[80%] text-gray-300">
                 Elite Global AI invites you to explore the transformative world
                 of artificial intelligence in diverse field such as Digital
-                marketing, Content creation, Business Analytics And Data Analytics.
+                marketing, Content creation, Business Analytics And Data
+                Analytics.
               </p>
               <div className="flex md:hidden mt-8">
                 <div
@@ -44,7 +71,13 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden md:block space-y-4">
-              <PaidLandingForm setShowForm={setShowForm} />
+              <PaidLandingForm
+                payWithSol={paywithSolana}
+                setPaySol={setPayWithSolana}
+                setShowForm={setShowForm}
+                setPrice={setPrice}
+                ref={postPaymentRef}
+              />
             </div>
           </div>
         </div>
@@ -57,7 +90,28 @@ export default function Home() {
       </div>
       {showForm && (
         <div className="fixed w-[100vw] md:hidden overflow-auto px-10 h-[100vh] bg-black z-40 top-0 right-0 space-y-4">
-          <PaidLandingForm setShowForm={setShowForm} />
+          <PaidLandingForm
+            payWithSol={paywithSolana}
+            setPaySol={setPayWithSolana}
+            setShowForm={setShowForm}
+            setPrice={setPrice}
+            ref={postPaymentRef}
+          />
+        </div>
+      )}
+      {paywithSolana && (
+        <div className="bg-black/50 backdrop-blur-sm h-[100vh] w-[100vw] fixed z-30 flex items-center justify-center top-0 right-0 ">
+          <ConnectionProvider endpoint={endpoint}>
+            <WalletProvider wallets={wallets} autoConnect>
+              <WalletModalProvider>
+                <HandlePayment
+                  handleWeb3PostPayment={handleWeb3PostPayment}
+                  setPaySol={setPayWithSolana}
+                  price={price}
+                />
+              </WalletModalProvider>
+            </WalletProvider>
+          </ConnectionProvider>
         </div>
       )}
     </main>

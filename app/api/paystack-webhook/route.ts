@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
 
       if (customField) {
         const values = customField.value;
-        const ref = values.splice(values.length - 1);
+        const ref = values.splice(values.length - 1); //note this is the ref of the person who a user uses their referral link
         const ref_val = ref[0] ? ref[0] : "";
         const fullProgram = ref
           ? ref[ref.length - 1]
