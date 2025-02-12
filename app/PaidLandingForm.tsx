@@ -517,4 +517,6 @@ const PaidLandingForm = forwardRef<PaidLandingFormRef, Params>(
   }
 );
 
+PaidLandingForm.displayName = "PaidLandingForm";
+
 export default PaidLandingForm;
