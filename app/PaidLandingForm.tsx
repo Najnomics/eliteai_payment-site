@@ -483,9 +483,9 @@ const PaidLandingForm = forwardRef<PaidLandingFormRef, Params>(
         </div>
 
         {isValid && (
-          <div className="flex flex-row md:space-x-5 space-y-5 md:space-y-0 mt-8">
+          <div className="flex flex-col lg:flex-row lg:space-x-5 space-y-5 md:space-y-0 mt-8">
             <button
-              className="w-[50%] flex items-start"
+              className="w-full md:w-[50%] flex items-start"
               onClick={(e) => {
                 e.preventDefault();
               }}
@@ -502,7 +502,7 @@ const PaidLandingForm = forwardRef<PaidLandingFormRef, Params>(
               />
             </button>
             <button
-              className="w-[50%] border-2"
+              className="w-full md:w-[50%] border-2 p-3"
               onClick={(e) => {
                 e.preventDefault();
                 setPaySol(true);

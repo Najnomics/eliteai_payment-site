@@ -1,6 +1,6 @@
 "use client";
 
-import { SetStateAction, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import PaidLandingForm, { PaidLandingFormRef } from "./PaidLandingForm";
 import Navbar from "./Navbar";
@@ -14,23 +14,24 @@ import {
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
+import {
+  PhantomWalletAdapter,
+  SolflareWalletAdapter,
+} from "@solana/wallet-adapter-wallets";
 import HandlePayment from "./web3_pay/handlePayment";
 
 const network = WalletAdapterNetwork.Devnet;
 
 export default function Home() {
   const endpoint = clusterApiUrl(network);
-  const wallets = [new PhantomWalletAdapter()];
+  const wallets = [new PhantomWalletAdapter(), new SolflareWalletAdapter()];
   const [paywithSolana, setPayWithSolana] = useState(false);
   const [price, setPrice] = useState(30);
   const [showForm, setShowForm] = useState(false);
   const postPaymentRef = useRef<PaidLandingFormRef>(null);
 
   const handleWeb3PostPayment = async () => {
-    console.log("in here 1");
     if (postPaymentRef.current) {
-      console.log("in here 2");
       await postPaymentRef.current.web3PostPayment();
     }
   };

@@ -493,15 +493,15 @@ const PaidLandingForm = forwardRef<PaidLandingFormRef, Params>(
         </div>
 
         {isValid && (
-          <div className="flex flex-col md:flex-row md:space-x-5 space-y-5 md:space-y-0 mt-8">
+          <div className="flex flex-col lg:flex-row lg:space-x-5 space-y-5 md:space-y-0 mt-8">
             <button
-              className="w-full flex items-start"
+              className="w-full md:w-[50%] flex items-start"
               onClick={(e) => {
                 e.preventDefault();
               }}
             >
               <PaystackButton
-                className={`p-3 w-[50%] rounded-sm items-center justify-center ${
+                className={`p-3 w-full rounded-sm items-center justify-center ${
                   isSubmitting || validating
                     ? "bg-gray-400 text-gray-700 cursor-not-allowed"
                     : "hover:animate-pulse bg-accent text-white"
@@ -511,7 +511,13 @@ const PaidLandingForm = forwardRef<PaidLandingFormRef, Params>(
                 text={!isSubmitting ? `Pay with Paystack` : "Processing..."}
               />
             </button>
-            <button className="w-[50%]" onClick={() => setPaySol(true)}>
+            <button
+              className="w-full md:w-[50%] border-2 p-3"
+              onClick={(e) => {
+                e.preventDefault();
+                setPaySol(true);
+              }}
+            >
               Pay with Solana
             </button>
           </div>

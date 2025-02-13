@@ -14,14 +14,17 @@ import {
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
+import {
+  PhantomWalletAdapter,
+  SolflareWalletAdapter,
+} from "@solana/wallet-adapter-wallets";
 import HandlePayment from "../web3_pay/handlePayment";
 
 const network = WalletAdapterNetwork.Devnet;
 
 export default function Home() {
   const endpoint = clusterApiUrl(network);
-  const wallets = [new PhantomWalletAdapter()];
+  const wallets = [new PhantomWalletAdapter(), new SolflareWalletAdapter()];
   const [paywithSolana, setPayWithSolana] = useState(false);
   const [price, setPrice] = useState(30);
   const [showForm, setShowForm] = useState(false);
