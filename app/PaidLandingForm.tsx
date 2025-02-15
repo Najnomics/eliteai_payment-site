@@ -285,12 +285,13 @@ const PaidLandingForm = forwardRef<PaidLandingFormRef, Params>(
           </span>{" "}
           ($30)
         </p>
-        <p className="text-xl mb-10 font-semibold">
+        {/* <p className="text-xl mb-10 font-semibold">
           <span className="text-sm text-amber-400">
             Amount Payable for AI Training Program:
           </span>{" "}
           ($10)
-        </p>
+        </p> */}
+
         <button
           type="button"
           onClick={() => setShowForm(false)}
@@ -442,7 +443,7 @@ const PaidLandingForm = forwardRef<PaidLandingFormRef, Params>(
         </div>
 
         <div className="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-10 mt-10">
-          <button
+          {/* <button
             type="button"
             onClick={() => {
               setGetFullProgram(!getFullProgram);
@@ -460,7 +461,8 @@ const PaidLandingForm = forwardRef<PaidLandingFormRef, Params>(
               className={`${!getFullProgram ? "text-accent" : "text-gray-400"}`}
             />
             <p>Continue with AI Training Program</p>
-          </button>
+          </button> */}
+
           <button
             type="button"
             onClick={() => {

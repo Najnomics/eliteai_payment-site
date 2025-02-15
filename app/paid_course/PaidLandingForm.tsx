@@ -295,6 +295,7 @@ const PaidLandingForm = forwardRef<PaidLandingFormRef, Params>(
           </span>{" "}
           N48000($30)
         </p>
+
         <p className="text-xl mb-10 font-semibold">
           <span className="text-sm text-amber-400">
             Amount Payable for AI Training Program:
