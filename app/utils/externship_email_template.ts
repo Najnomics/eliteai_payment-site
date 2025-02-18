@@ -1,6 +1,6 @@
 const externshipPlatformLink = "www.elitegloblinternships.com";
 const couponCode = "theway098H";
-const communityLink = "https://chat.whatsapp.com/JlnZmkkbjsM5DkK4AORa4r";
+const communityLink = "https://chat.whatsapp.com/H5rvIkh5vs43yoA3NgP0tb";
 const onboardingVideoLink = "https://youtu.be/zpdwnOA70FA";
 
 type emailContent = "text" | "html";
